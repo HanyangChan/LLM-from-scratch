@@ -28,7 +28,17 @@ Tokenizer의 경우 OpenAI의 GPT2를 사용하였습니다.
   - Top‑k sampling
   - Temperature 조절
   - Repetition penalty, EOS 토큰 처리
-
+- **Learning Modules**
+  - activation functions
+    - ReLU
+    - GELU
+    - SwiGLU
+   
+  - optimizer
+    - AdamW
+    - learning rate : 7e-4 
+ 
+    
 ---
 
 ## Project Structure
@@ -53,6 +63,8 @@ Trainer : 학습/검증 루프, W&B 로깅
 
 generate : 샘플 텍스트 생성 함수
 
+---
+
 ## Training Results
 
 ### 01/08
@@ -61,7 +73,11 @@ generate : 샘플 텍스트 생성 함수
 
 ## Issues and Update
 
-### 01/09
+### 01/08 (Prototype)
+
+### 01/09 (ReLU -> GELU)
+
+Update : 활성화 함수 ReLU에서 GELU로 변경
 
 Issue : EOS(End Of State)가 반복되는 현상
 
