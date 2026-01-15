@@ -126,3 +126,17 @@ Update : RoPE 추가
 ### 01
 
 Update : Flash Attention 추가 
+
+---
+
+## ROPE란?
+
+---
+## Flash Attention이란? 
+
+1. 주요 특징 고속 연산: 기존 어텐션 대비 속도가 최대 수 배 빠릅니다.메모리 절약: 시퀀스 길이(\(N\))에 따른 메모리 복잡도를 \(O(N^{2})\)에서 \(O(N)\)으로 획기적으로 줄여, 더 긴 문맥(Long Context) 처리가 가능합니다.정확도 유지: 근사치(Approximation)를 구하는 방식이 아닌, 수학적으로 동일한 결과를 내는 Exact Attention 방식입니다. 2. 핵심 원리 Tiling (타일링): 대용량의 어텐션 행렬을 한꺼번에 계산하지 않고, 작은 블록(타일) 단위로 나누어 GPU의 빠른 메모리인 SRAM에서 처리합니다.Recomputation (재계산): 중간 결과인 \(N\times N\) 어텐션 행렬을 HBM(메인 메모리)에 저장하는 대신, 역전파(Backpropagation) 시에 필요한 부분만 다시 계산하여 메모리 읽기/쓰기(I/O) 오버헤드를 극대화로 줄입니다.
+
+2. 현재 대부분의 딥러닝 라이브러리에서 기본적으로 지원합니다.
+PyTorch: torch.nn.functional.scaled_dot_product_attention을 사용하면 조건 충족 시 자동으로 실행됩니다.
+직접 설치: FlashAttention 공식 GitHub에서 소스 코드를 확인하고 설치할 수 있습니다. 
+이 기술은 GPT-4, Llama 3와 같은 최신 대형 언어 모델(LLM)이 수만 단어 이상의 긴 문장을 빠르게 처리할 수 있게 만든 핵심 기술 중 하나입니다.
