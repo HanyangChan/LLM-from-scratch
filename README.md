@@ -41,6 +41,13 @@ Tokenizer의 경우 OpenAI의 GPT2를 사용하였습니다.
     
 ---
 
+## Environment
+
+- **GPU**
+  -NVIDIA 3060ti 
+  
+---
+
 ## Project Structure
 
 ```bash
@@ -123,9 +130,10 @@ Update : lr 5e-4 -> 7e-4
 
 Update : RoPE 추가 
 
-### 01
+### 01/22
 
-Update : Flash Attention 추가 
+Update : Flash Attention 추가 시도 `scaled_dot_product_attention`를 활용하여 `MutilheadAttention`에 추가
+Issue : NVIDIA GPU 30시리즈에서 SDPA로 Flash Attention이 지원이 되지않음
 
 ---
 
